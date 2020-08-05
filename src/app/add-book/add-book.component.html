@@ -1,0 +1,49 @@
+<div class="container mat-elevation-z8">
+  <h2>Add Book</h2>
+  <div class="loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/']">
+      <mat-icon>list</mat-icon>
+    </a>
+  </div>
+  <mat-card class="card">
+    <form [formGroup]="booksForm" (ngSubmit)="onFormSubmit()">
+      <mat-form-field class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="name" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!booksForm.get('name').valid && booksForm.get('name').touched">Please enter Name</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Author</mat-label>
+        <input matInput placeholder="Author" formControlName="author" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!booksForm.get('author').valid && booksForm.get('author').touched">Please enter Author</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <input matInput placeholder="Description" formControlName="description" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!booksForm.get('description').valid && booksForm.get('description').touched">Please enter
+            Description</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Release Date</mat-label>
+        <input matInput type="number" placeholder="Year" formControlName="year" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!booksForm.get('year').valid && booksForm.get('year').touched">Please enter Year</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!booksForm.valid" mat-flat-button color="primary">
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
